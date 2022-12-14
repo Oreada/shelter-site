@@ -41,7 +41,7 @@
 						<nav class="menu__body">
 							<ul class="menu__list">
 								<li class="menu__item menu__item_active">
-									<a href="#about" class="menu__link">About the shelter</a>
+									<a href="#" class="menu__link">About the shelter</a>
 								</li>
 								<li class="menu__item">
 									<a href="../pets/index.html" class="menu__link">Our pets</a>
@@ -61,6 +61,7 @@
 		</header>
 
 		<main class="main">
+			<!-- <div class="overlay"></div> -->
 			<div class="main__container">
 
 
@@ -70,9 +71,9 @@
 
 							<div class="notonly__words words">
 								<h2 class="words__title">Not only people<br>need a house</h2>
-								<div class="words__text">We offer to give a chance to a little and nice puppy with an
-									extremely wide and open heart. He or she will love you more than anybody else in the
-									world, you will see!</div>
+								<div class="words__text">We offer to give a chance to a little and nice puppy with
+									an extremely wide and open heart. He or she will love you more than anybody else in
+									the world, you will see!</div>
 								<button class="words__button btn btn_fill" onclick="document.location='#friends'">Make a
 									friend</button>
 							</div>
@@ -98,19 +99,15 @@
 
 							<div class="about__article article">
 								<h3 class="article__title">About the shelter <br> “Cozy House”</h3>
-								<p class="article__paragraph">Currently we have 121 dogs and 342 cats on our hands and
-									statistics show that only 20% of them will find a family. The others will continue
-									to
-									live with us and will be waiting for a lucky chance to become dearly loved.</p>
-								<p class="article__paragraph">We feed our wards with the best food and make sure that
-									they
-									do not get sick, feel comfortable (including psychologically) and well. We are
-									supported
-									by 87 volunteers and 28 employees of various skill levels. About 12% of the animals
-									are
-									taken by the shelter staff. Taking care of the animals, they become attached to the
-									pets
-									and would hardly ever leave them alone.</p>
+								<p class="article__paragraph">Currently we have 121 dogs and 342 cats on our hands
+									and statistics show that only 20% of them will find a family. The others will
+									continue to live with us and will be waiting for a lucky chance to become dearly
+									loved.</p>
+								<p class="article__paragraph">We feed our wards with the best food and make sure
+									that they do not get sick, feel comfortable (including psychologically) and well. We
+									are supported by 87 volunteers and 28 employees of various skill levels. About 12%
+									of the animals are taken by the shelter staff. Taking care of the animals, they
+									become attached to the pets and would hardly ever leave them alone.</p>
 							</div>
 
 						</div>
@@ -133,51 +130,140 @@
 									</svg>
 								</button>
 
-								<ul class="carousel__list">
+								<div class="carousel__wrapper">
+									<ul class="carousel__list">
 
-									<li class="carousel__item">
-										<div class="carousel__card card">
-											<div class="card__image-wrapper">
-												<img src="../../assets/images/friends_katrine.png" alt="A grey cat"
-													class="card__image" width="270" height="270">
+										<li class="carousel__item" id="item1">
+											<div class="carousel__card card" data-id="7">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/charly.png" alt="A white-brown dog"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Charly</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
+										</li>
 
-											<div class="card__words">
-												<h4 class="card__title-name">Katrine</h4>
-												<button class="card__button btn">Learn more</button>
+										<li class="carousel__item" id="item2">
+											<div class="carousel__card card" data-id="6">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/freddie.png"
+														alt="A grey cat with stripes" class="card__image" width="270"
+														height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Freddie</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
-										</div>
-									</li>
+										</li>
 
-									<li class="carousel__item" id="jennifer">
-										<div class="carousel__card card">
-											<div class="card__image-wrapper">
-												<img src="../../assets/images/friends_jennifer.png" alt="A beige puppy"
-													class="card__image" width="270" height="270">
+										<li class="carousel__item" id="item3">
+											<div class="carousel__card card" data-id="4">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/scarlett.png"
+														alt="A white-brown puppy" class="card__image" width="270"
+														height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Scarlett</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
+										</li>
 
-											<div class="card__words">
-												<h4 class="card__title-name">Jennifer</h4>
-												<button class="card__button btn">Learn more</button>
+										<li class="carousel__item" id="item4">
+											<div class="carousel__card card" data-id="0">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/katrine.png" alt="A grey cat"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Katrine</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
-										</div>
-									</li>
+										</li>
 
-									<li class="carousel__item" id="woody">
-										<div class="carousel__card card">
-											<div class="card__image-wrapper">
-												<img src="../../assets/images/friends_woody.png" alt="A brown dog"
-													class="card__image" width="270" height="270">
+										<li class="carousel__item" id="item5">
+											<div class="carousel__card card" data-id="1">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/jennifer.png" alt="A beige puppy"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Jennifer</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
+										</li>
 
-											<div class="card__words">
-												<h4 class="card__title-name">Woody</h4>
-												<button class="card__button btn">Learn more</button>
+										<li class="carousel__item" id="item6">
+											<div class="carousel__card card" data-id="2">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/woody.png" alt="A brown dog"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Woody</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
 											</div>
-										</div>
-									</li>
+										</li>
 
-								</ul>
+										<li class="carousel__item" id="item7">
+											<div class="carousel__card card" data-id="3">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/sophia.png"
+														alt="A white puppy with black ears" class="card__image"
+														width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Sophia</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
+											</div>
+										</li>
+
+										<li class="carousel__item" id="item8">
+											<div class="carousel__card card" data-id="5">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/timmy.png" alt="A grey cat"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Timmy</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
+											</div>
+										</li>
+
+										<li class="carousel__item" id="item9">
+											<div class="carousel__card card" data-id="7">
+												<div class="card__image-wrapper">
+													<img src="../../assets/images/charly.png" alt="A white-brown dog"
+														class="card__image" width="270" height="270">
+												</div>
+
+												<div class="card__words">
+													<h4 class="card__title-name">Charly</h4>
+													<button class="card__button btn">Learn more</button>
+												</div>
+											</div>
+										</li>
+
+									</ul>
+								</div>
 
 								<button class="carousel__right-arrow btn_page">
 									<svg width="14" height="6" viewBox="0 0 14 6" fill="none"
@@ -435,9 +521,9 @@
 									<a class="note__numbers-link">8380 2880 8028 8791 7435</a>
 								</div>
 								<div class="note__text">Legal information and lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent
-									ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum
-									primis in faucibus.</div>
+									adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam.
+									Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante
+									ipsum primis in faucibus.</div>
 							</div>
 
 						</div>
@@ -536,6 +622,53 @@
 		</footer>
 
 	</div>
+
+	<div class="popup" id="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+
+				<div class="popup__image-wrapper">
+					<img src="../../assets/images/sophia.png" alt="A white puppy with black ears" class="popup__image"
+						width="500" height="500">
+				</div>
+
+				<div class="popup__profile profile">
+					<h3 class="profile__title">Jennifer</h3>
+					<h4 class="profile__subtitle">Dog - Labrador</h4>
+					<div class="profile__text">
+						<div class="profile__description">Jennifer is a sweet 2 months old Labrador that is patiently
+							waiting to find a new forever home. This girl really enjoys being able to go outside to run
+							and play, but won't hesitate to play up a storm in the house if she has all of her favorite
+							toys.</div>
+						<div class="profile__details details">
+							<p class="details__item"><span class="details__item_bold">Age:&nbsp;</span>
+								<span class="details__item_age">2 months</span>
+							</p>
+							<p class="details__item"><span class="details__item_bold">Inoculations:&nbsp;</span>
+								<span class="details__item_inoculations">none</span>
+							</p>
+							<p class="details__item"><span class="details__item_bold">Diseases:&nbsp;</span>
+								<span class="details__item_diseases">none</span>
+							</p>
+							<p class="details__item"><span class="details__item_bold">Parasites:&nbsp;</span>
+								<span class="details__item_parasites">none</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<button class="popup__button btn_page">
+					<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M7.42618 6.00003L11.7046 1.72158C12.0985 1.32775 12.0985 0.689213 11.7046 0.295433C11.3108 -0.0984027 10.6723 -0.0984027 10.2785 0.295433L5.99998 4.57394L1.72148 0.295377C1.32765 -0.098459 0.68917 -0.098459 0.295334 0.295377C-0.0984448 0.689213 -0.0984448 1.32775 0.295334 1.72153L4.57383 5.99997L0.295334 10.2785C-0.0984448 10.6723 -0.0984448 11.3108 0.295334 11.7046C0.68917 12.0985 1.32765 12.0985 1.72148 11.7046L5.99998 7.42612L10.2785 11.7046C10.6723 12.0985 11.3108 12.0985 11.7046 11.7046C12.0985 11.3108 12.0985 10.6723 11.7046 10.2785L7.42618 6.00003Z"
+							fill="#292929" />
+					</svg>
+				</button>
+
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

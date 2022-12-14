@@ -38,9 +38,15 @@
 // Файл обнуляющих стилей
 @import "_nullstyle";
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	width: 100%;
 	min-height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
 	min-width: 320px; //! дописали на интенсиве
 	// line-height: 1.6; //! 160% в макете, но в body так писать нельзя
 	font-size: 15px;
@@ -163,6 +169,11 @@ img {
 
 .menu__logo {
 	// display: none;
+	width: 320px;
+	padding-top: 30px;
+	padding-left: 10px;
+	background-color: #292929; //! чтобы помешать пунктам налезать на лого при прокрутке
+
 	position: absolute;
 	top: -500%; //! уводим доп.лого вверх
 	right: 0;
@@ -170,12 +181,12 @@ img {
 
 	&._active-logo {
 		// display: block;
-		top: 30px; //! показываем доп.лого
-		right: 126px;
+		top: 0px; //! показываем доп.лого
+		// right: 126px;
 		z-index: 10;
 		opacity: 1;
 
-		transition: opacity 0.5s ease 0.3s;
+		transition: opacity 0.5s ease 0.5s;
 	}
 
 	& h1 {
@@ -197,7 +208,7 @@ img {
 		min-width: 30px; //! при жёстком width крестик-иконка меню уменьшалась на малом размере экрана
 		height: 22px;
 		cursor: pointer;
-		z-index: 5;
+		z-index: 20;
 
 		transition: all 0.5s ease 0s;
 	}
@@ -266,7 +277,7 @@ img {
 		height: 100%;
 		background-color: #292929;
 
-		transition: right 0.5s ease 0s;
+		transition: right 0.5s linear 0s;
 
 		overflow: auto; //! необходимо всегда писать в бургере, чтобы можно было прокручивать пункты меню, если их много
 	}
@@ -301,7 +312,11 @@ img {
 		height: 100%;
 		flex-direction: column;
 		justify-content: center;
+		// justify-content: flex-start;
+
 		gap: 40px;
+
+		// padding-top: 160px;
 	}
 }
 
@@ -379,11 +394,14 @@ img {
 }
 
 .btn_page {
+	width: 52px;
 	height: 52px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	padding: 5px; //! secure
+	border: 2px solid #f1cdb3;
 	border-radius: 100px;
 	background-color: transparent;
 
@@ -396,10 +414,6 @@ img {
 	color: #292929;
 
 	transition: all 0.3s ease 0s;
-}
-
-.btn_disabled {
-	border: 2px solid #cdcdcd;
 }
 
 //======== main ===============================================================================
@@ -575,25 +589,17 @@ img {
 }
 
 .pagination__double-left {
-	padding: 5px 12px; //! 5px- отступы безопасности
-	cursor: auto;
 }
 
 .pagination__single-left {
-	padding: 5px 19px; //! 5px- отступы безопасности
-	cursor: auto;
 }
 
 .pagination__number {
 	background-color: #f1cdb3;
-	padding: 5px 21px; //! 5px- отступы безопасности
 	cursor: auto;
 }
 
 .pagination__single-right {
-	border: 2px solid #f1cdb3;
-	padding: 5px 19px; //! 5px- отступы безопасности
-
 	&:hover {
 		background-color: #fddcc4;
 		border: 2px solid #fddcc4;
@@ -601,12 +607,20 @@ img {
 }
 
 .pagination__double-right {
-	border: 2px solid #f1cdb3;
-	padding: 5px 12px; //! 5px- отступы безопасности
-
 	&:hover {
 		background-color: #fddcc4;
 		border: 2px solid #fddcc4;
+	}
+}
+
+.btn_disabled {
+	color: #cdcdcd;
+	border: 2px solid #cdcdcd;
+	cursor: auto;
+
+	&:hover {
+		background-color: transparent;
+		border: 2px solid #cdcdcd;
 	}
 }
 
@@ -764,4 +778,261 @@ img {
 }
 
 .footer__image {
+}
+
+//! pop-up (modal window) -----------------------------------------------------
+
+.popup {
+	opacity: 0; //! пока окно скрыто
+	visibility: hidden; //! пока окно скрыто
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100vw;
+	overflow-x: hidden;
+
+	background: rgba(41, 41, 41, 0.6);
+
+	transition: all 0.6s ease 0s;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:hover .popup__button {
+		background-color: #fddcc4;
+		border: 2px solid #fddcc4;
+	}
+
+	&._open {
+		//! см. JS
+		opacity: 1; //! показываем окно
+		visibility: visible; //! показываем окно
+	}
+}
+
+.popup__body {
+	width: 900px;
+	height: 500px;
+
+	padding: 30px; //! secure
+
+	box-sizing: content-box;
+	//! Переключила контейнер с border-box на content-box после добавления паддинга, чтобы паддинг не считался частью width
+	//! и не уменьшал .popup__content
+
+	@media (max-width: 1279px) {
+		width: 630px;
+		height: 350px;
+	}
+
+	@media (max-width: 767px) {
+		width: 240px;
+		height: 341px;
+	}
+}
+
+.popup__content {
+	//! это видимая часть модального окна
+
+	position: relative;
+	z-index: 100;
+
+	display: grid;
+	justify-content: space-between;
+
+	grid-template-columns: auto 351px;
+	gap: 29px;
+
+	font-family: "Georgia", serif;
+	color: #000000;
+	background-color: #fafafa;
+	border-radius: 9px;
+	box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+
+	&:hover {
+		cursor: auto;
+	}
+
+	&:hover .popup__button {
+		background-color: transparent;
+		border: 2px solid #f1cdb3;
+	}
+
+	@media (max-width: 1279px) {
+		grid-template-columns: auto 260px;
+		gap: 11px;
+	}
+
+	@media (max-width: 767px) {
+		grid-template-columns: auto;
+		gap: 0;
+	}
+}
+
+.popup__image-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 500px;
+
+	@media (max-width: 1279px) {
+		max-width: 350px;
+	}
+
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.popup__image {
+	// border-bottom-left-radius: 9px;
+	border-radius: 9px 0px 0px 9px;
+}
+
+.popup__profile {
+}
+
+.profile {
+	padding-top: 50px;
+	padding-right: 20px;
+
+	@media (max-width: 1279px) {
+		padding-top: 10px;
+		padding-right: 9px;
+		padding-bottom: 10px; //! secure
+	}
+
+	@media (max-width: 767px) {
+		padding: 10px;
+	}
+}
+
+.profile__title {
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 10px;
+
+	@media (max-width: 767px) {
+		text-align: center;
+	}
+}
+
+.profile__subtitle {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 40px;
+
+	@media (max-width: 1279px) {
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 767px) {
+		text-align: center;
+	}
+}
+
+.profile__text {
+}
+
+.profile__description {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 40px;
+
+	@media (max-width: 1279px) {
+		font-size: 13px;
+
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 767px) {
+		text-align: justify;
+
+		margin-bottom: 24px;
+	}
+}
+
+.profile__details {
+}
+
+.details {
+	& > *:not(:last-child) {
+		margin: 0px 0px 10px 0px;
+	}
+
+	@media (max-width: 1279px) {
+		& > *:not(:last-child) {
+			margin: 0px 0px 5px 0px;
+		}
+	}
+}
+
+.details__item {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	letter-spacing: 0.06em;
+}
+
+.details__item_bold {
+	display: inline-flex;
+	align-items: center;
+	font-weight: 700;
+
+	&::before {
+		content: "";
+		display: inline-block;
+
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+
+		background-color: #f1cdb3;
+
+		margin-right: 10px;
+	}
+}
+
+.details__item_age,
+.details__item_inoculations,
+.details__item_diseases,
+.details__item_parasites {
+	vertical-align: bottom;
+}
+
+.popup__button {
+	width: 52px;
+
+	position: absolute;
+	z-index: 200;
+	top: -52px;
+	right: -42px;
+
+	&:hover {
+		// background-color: #fddcc4;
+		// border: 2px solid #fddcc4;
+		background-color: #fddcc4 !important;
+		border: 2px solid #fddcc4 !important;
+	}
+
+	@media (max-width: 767px) {
+		right: -32px;
+	}
 }

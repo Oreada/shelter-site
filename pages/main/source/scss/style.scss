@@ -38,9 +38,15 @@
 // Файл обнуляющих стилей
 @import "_nullstyle";
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	width: 100%;
 	min-height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
 	min-width: 320px; //! дописали на интенсиве
 	// line-height: 1.6; //! 160% в макете, но в body так писать нельзя
 	font-size: 15px;
@@ -58,7 +64,7 @@ body {
 .wrapper {
 	min-height: 100%;
 	// max-width: 1280px;
-	// margin: 0px auto; //! позволяет контейнеру выстроиться посередине
+	// margin: 0px auto;
 
 	display: flex;
 	flex-direction: column;
@@ -97,7 +103,7 @@ img {
 	width: 100%;
 	top: 60px;
 	left: 0px;
-	z-index: 1;
+	z-index: 4;
 
 	@media (max-width: 1279px) {
 		top: 30px;
@@ -122,6 +128,10 @@ img {
 
 .logo__link {
 	display: inline-block;
+
+	// &._none {
+	// 	display: none;
+	// }
 }
 
 .logo__title {
@@ -161,20 +171,23 @@ img {
 }
 
 .menu__logo {
-	// display: none;
+	width: 320px;
+	padding-top: 0px;
+	padding-left: 10px;
+	background-color: #292929; //! чтобы помешать пунктам налезать на лого при прокрутке
+
 	position: absolute;
 	top: -500%; //! уводим доп.лого вверх
 	right: 0;
 	opacity: 0;
 
 	&._active-logo {
-		// display: block;
-		top: 0; //! показываем доп.лого
-		right: 126px;
+		top: 0px; //! показываем доп.лого
+		// right: 126px;
 		z-index: 10;
 		opacity: 1;
 
-		transition: opacity 0.5s ease 0.3s;
+		transition: opacity 0.5s ease 0.5s;
 	}
 }
 
@@ -188,7 +201,7 @@ img {
 		min-width: 30px;
 		height: 22px;
 		cursor: pointer;
-		z-index: 5;
+		z-index: 20;
 
 		transition: all 0.5s ease 0s;
 	}
@@ -251,7 +264,7 @@ img {
 		height: 100%;
 		background-color: #292929;
 
-		transition: right 0.5s ease 0s;
+		transition: right 0.5s linear 0s;
 
 		overflow: auto; //! необходимо всегда писать в бургере, чтобы можно было прокручивать пункты меню, если их много
 	}
@@ -274,6 +287,19 @@ img {
 		}
 	}
 }
+
+// .overlay {
+// 	&._active {
+// 		position: fixed;
+// 		display: block;
+// 		width: 100%;
+// 		height: 100%;
+// 		top: 0;
+// 		left: 0;
+// 		background-color: rgba(41, 41, 41, 0.6);
+// 		z-index: 2;
+// 	}
+// }
 //! menu-burger (end) --------
 
 .menu__list {
@@ -286,7 +312,11 @@ img {
 		height: 100%;
 		flex-direction: column;
 		justify-content: center;
+		// justify-content: flex-start;
+
 		gap: 40px;
+
+		// padding-top: 160px;
 	}
 }
 
@@ -364,12 +394,13 @@ img {
 }
 
 .btn_page {
+	width: 52px;
 	height: 52px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	padding: 5px 17px; //! 5px- отступы безопасности
+	padding: 5px; //! secure
 	border: 2px solid #f1cdb3;
 	border-radius: 100px;
 	background-color: transparent;
@@ -646,42 +677,128 @@ img {
 }
 
 .carousel__left-arrow {
-	width: 52px;
-
 	@media (max-width: 767px) {
 		order: 1;
 	}
 }
 
+//! slyder beginning ------------------------
+.carousel__wrapper {
+	width: 990px; // for slyder
+	// margin: ;  // for slyder
+	overflow: hidden; // for slyder
+
+	@media (max-width: 1279px) {
+		width: 580px; // for slyder
+	}
+
+	@media (max-width: 767px) {
+		grid-column-start: span 2;
+
+		width: 270px; // for slyder
+	}
+}
+
 .carousel__list {
-	display: grid;
-	grid-template-columns: auto auto auto;
+	position: relative; // for slyder
+	left: -1080px; // for slyder
+
+	display: flex;
 	gap: 90px;
 
 	@media (max-width: 1279px) {
-		grid-template-columns: auto auto;
+		left: -620px; // for slyder
+
 		gap: 40px;
 	}
 
 	@media (max-width: 767px) {
-		justify-items: center;
-		justify-content: center;
-		grid-column-start: span 2;
+		left: -270px; // for slyder
+
 		gap: 0;
 	}
 }
 
-#woody {
-	@media (max-width: 1279px) {
-		display: none;
+@keyframes move-right-1280 {
+	from {
+		left: -1080px;
+	}
+	to {
+		left: -2160px;
 	}
 }
 
-#jennifer {
-	@media (max-width: 767px) {
-		display: none;
+@keyframes move-right-768 {
+	from {
+		left: -620px;
+	}
+	to {
+		left: -1240px;
 	}
 }
+
+@keyframes move-right-320 {
+	from {
+		left: -270px;
+	}
+	to {
+		left: -540px;
+	}
+}
+
+.transition-right {
+	animation-name: move-right-1280;
+	animation-duration: 1s;
+
+	@media (max-width: 1279px) {
+		animation-name: move-right-768;
+	}
+
+	@media (max-width: 767px) {
+		animation-name: move-right-320;
+	}
+}
+
+@keyframes move-left-1280 {
+	from {
+		left: -1080px;
+	}
+	to {
+		left: 0px;
+	}
+}
+
+@keyframes move-left-768 {
+	from {
+		left: -620px;
+	}
+	to {
+		left: 0px;
+	}
+}
+
+@keyframes move-left-320 {
+	from {
+		left: -270px;
+	}
+	to {
+		left: 0px;
+	}
+}
+
+.transition-left {
+	animation-name: move-left-1280;
+	animation-duration: 1s;
+
+	@media (max-width: 1279px) {
+		animation-name: move-left-768;
+	}
+
+	@media (max-width: 767px) {
+		animation-name: move-left-320;
+	}
+}
+//! slyder end ------------------------
 
 .carousel__item {
 }
@@ -690,6 +807,7 @@ img {
 }
 
 .card {
+	width: 270px;
 	background-color: #fafafa;
 	border-radius: 9px;
 	cursor: pointer;
@@ -742,8 +860,6 @@ img {
 }
 
 .carousel__right-arrow {
-	width: 52px;
-
 	@media (max-width: 767px) {
 		order: 2;
 	}
@@ -1161,4 +1277,261 @@ img {
 }
 
 .footer__image {
+}
+
+//! pop-up (modal window) -----------------------------------------------------
+
+.popup {
+	opacity: 0; //! пока окно скрыто
+	visibility: hidden; //! пока окно скрыто
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100vw;
+	overflow-x: hidden;
+
+	background: rgba(41, 41, 41, 0.6);
+
+	transition: all 0.6s ease 0s;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:hover .popup__button {
+		background-color: #fddcc4;
+		border: 2px solid #fddcc4;
+	}
+
+	&._open {
+		//! см. JS
+		opacity: 1; //! показываем окно
+		visibility: visible; //! показываем окно
+	}
+}
+
+.popup__body {
+	width: 900px;
+	height: 500px;
+
+	padding: 30px; //! secure
+
+	box-sizing: content-box;
+	//! Переключила контейнер с border-box на content-box после добавления паддинга, чтобы паддинг не считался частью width
+	//! и не уменьшал .popup__content
+
+	@media (max-width: 1279px) {
+		width: 630px;
+		height: 350px;
+	}
+
+	@media (max-width: 767px) {
+		width: 240px;
+		height: 341px;
+	}
+}
+
+.popup__content {
+	//! это видимая часть модального окна
+
+	position: relative;
+	z-index: 100;
+
+	display: grid;
+	justify-content: space-between;
+
+	grid-template-columns: auto 351px;
+	gap: 29px;
+
+	font-family: "Georgia", serif;
+	color: #000000;
+	background-color: #fafafa;
+	border-radius: 9px;
+	box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+
+	&:hover {
+		cursor: auto;
+	}
+
+	&:hover .popup__button {
+		background-color: transparent;
+		border: 2px solid #f1cdb3;
+	}
+
+	@media (max-width: 1279px) {
+		grid-template-columns: auto 260px;
+		gap: 11px;
+	}
+
+	@media (max-width: 767px) {
+		grid-template-columns: auto;
+		gap: 0;
+	}
+}
+
+.popup__image-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 500px;
+
+	@media (max-width: 1279px) {
+		max-width: 350px;
+	}
+
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.popup__image {
+	// border-bottom-left-radius: 9px;
+	border-radius: 9px 0px 0px 9px;
+}
+
+.popup__profile {
+}
+
+.profile {
+	padding-top: 50px;
+	padding-right: 20px;
+
+	@media (max-width: 1279px) {
+		padding-top: 10px;
+		padding-right: 9px;
+		padding-bottom: 10px; //! secure
+	}
+
+	@media (max-width: 767px) {
+		padding: 10px;
+	}
+}
+
+.profile__title {
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 10px;
+
+	@media (max-width: 767px) {
+		text-align: center;
+	}
+}
+
+.profile__subtitle {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 40px;
+
+	@media (max-width: 1279px) {
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 767px) {
+		text-align: center;
+	}
+}
+
+.profile__text {
+}
+
+.profile__description {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	letter-spacing: 0.06em;
+
+	margin-bottom: 40px;
+
+	@media (max-width: 1279px) {
+		font-size: 13px;
+
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 767px) {
+		text-align: justify;
+
+		margin-bottom: 24px;
+	}
+}
+
+.profile__details {
+}
+
+.details {
+	& > *:not(:last-child) {
+		margin: 0px 0px 10px 0px;
+	}
+
+	@media (max-width: 1279px) {
+		& > *:not(:last-child) {
+			margin: 0px 0px 5px 0px;
+		}
+	}
+}
+
+.details__item {
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	letter-spacing: 0.06em;
+}
+
+.details__item_bold {
+	display: inline-flex;
+	align-items: center;
+	font-weight: 700;
+
+	&::before {
+		content: "";
+		display: inline-block;
+
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+
+		background-color: #f1cdb3;
+
+		margin-right: 10px;
+	}
+}
+
+.details__item_age,
+.details__item_inoculations,
+.details__item_diseases,
+.details__item_parasites {
+	vertical-align: bottom;
+}
+
+.popup__button {
+	width: 52px;
+
+	position: absolute;
+	z-index: 200;
+	top: -52px;
+	right: -42px;
+
+	&:hover {
+		// background-color: #fddcc4;
+		// border: 2px solid #fddcc4;
+		background-color: #fddcc4 !important;
+		border: 2px solid #fddcc4 !important;
+	}
+
+	@media (max-width: 767px) {
+		right: -32px;
+	}
 }
